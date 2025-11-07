@@ -1,0 +1,11 @@
+Installing watchdogantihook() ...
+result: {'status': 'installed', 'results': {'xmlrpc': 'proxied', 'urllib3': 'proxied', 'httpx': 'missing', 'curllib': 'missing', 'requests': 'proxied', 'email': 'proxied', 'json': 'proxied', 'http': 'proxied', 'asyncio': 'proxied', 'curl': 'missing', 'socket': 'proxied', 'pycurl': 'missing', 'aiohttp': 'missing', 'urllib': 'proxied', 'ssl': 'proxied', 'selectors': 'proxied', 'builtins.__import__': 'wrapped'}}
+Watchdog running in background. Test monkeypatch by e.g.:
+  import requests
+  requests.Session.request = lambda *a, **k: None
+Then watchdog should detect and exit.
+Traceback (most recent call last):
+  File "/storage/emulated/0/Download/server205.py", line 289, in <module>
+    r = requests.get(url, timeout=10)
+        ^^^^^^^^
+NameError: name 'requests' is not defined
